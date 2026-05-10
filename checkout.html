@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>cart</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+
+        <header>
+            <input type="checkbox" name="" id="toggler">
+            <label for="toggler" class="fas fa-bars"></label> 
+            <a href="#" class="logo">Bloom HAVEN<span>.</span></a>
+            <nav class="navbar">
+                <a href="index.html#home">home</a>
+                <a href="index.html#about">about</a>
+                <a href="index.html#products">products</a>
+                <a href="index.html#review">review</a>
+                <a href="index.html#contact">contact</a>
+        
+            </nav>
+            <div class="icons">
+                <a href="checkout.html" class="fas fa-shopping-cart"></a>
+            
+            </div>
+        </header>
+
+        <section class="details">
+            <div class="detail-container">
+                <div class="each-detail-container">
+        <div class="order-details">
+            <h2>Your Checkout</h2>
+            
+            <div class="cart-items"></div>
+            <h3 class="total"></h3>
+            </div>
+            </div>
+
+        <!--customer details begin-->
+         <div class="each-detail-container">
+        <div class="customer-details">
+            <input id="name" placeholder="name">
+            <input id="phone" placeholder="phone">
+            <input id="address" placeholder="address">
+            <button onclick="sendToWhatsapp()">place order</button>
+        </div>
+        </div>
+    </div>
+    </section>
+
+        <!--customer details ends-->
+
+        <!--footer section sarts-->
+
+        <section class="footer">
+            <div class="box-container">
+                <div class="box">
+                    <h3>quick links</h3>
+                    <a href="index.html#home">home</a>
+                    <a href="index.html#about">about</a>
+                    <a href="index.html#products">products</a>
+                    <a href="index.html#review">review</a>
+                    <a href="index.html#contact">contacts</a>
+                </div>
+
+                <div class="box">
+                    <h3>extra link</h3>
+                    
+                    <a href="checkout.html">my Cart</a>
+                
+                </div>
+
+                <div class="box">
+                    <h3>locations</h3>
+                    <a href="https://www.google.com/maps/place/Abuja,+Nigeria" target="_blank">Nigeria</a>
+                    
+                </div>
+
+                <div class="box">
+                    <h3>contact info</h3>
+                    <a href="https://wa.me/2348109970402" target="_blank">Whatsapp me for more enquiry</a>
+                    
+                </div>
+
+            </div>
+            
+            <div class="credit"> © 2026 <span> Bloom HAVEN </span> | all rights reserved </div>
+
+        </section>
+          
+            <!--footer section ends-->
+
+
+    <script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let container = document.querySelector(".cart-items");
+let totalBox = document.querySelector(".total");
+
+function renderCart() {
+    container.innerHTML = "";
+    let total = 0;
+
+    cart.forEach(item => {
+        let itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        container.innerHTML += `
+          <div class="cart-item">
+            <img src="${item.image}" width="60" height="60">
+
+            <div class="details">
+              <b>${item.name}</b><br>
+              ₦${item.price}
+            </div>
+
+            <div class="controls">
+              <button onclick="decreaseQty('${item.name}')">-</button>
+              <span>${item.quantity}</span>
+              <button onclick="increaseQty('${item.name}')">+</button>
+            </div>
+
+            <button class="remove" onclick="removeItem('${item.name}')">Remove</button>
+          </div>
+        `;
+    });
+
+    totalBox.innerText = "Total: ₦" + total;
+}
+
+function increaseQty(name) {
+    let item = cart.find(p => p.name === name);
+    if (item) item.quantity++;
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+}
+
+function decreaseQty(name) {
+    let item = cart.find(p => p.name === name);
+
+    if (item) {
+        item.quantity--;
+
+        if (item.quantity <= 0) {
+            cart = cart.filter(p => p.name !== name);
+        }
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+}
+
+function removeItem(name) {
+    cart = cart.filter(item => item.name !== name);
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+}
+
+renderCart();
+
+function sendToWhatsapp() {
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let address = document.getElementById("address").value;
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    let message = "NEW ORDER\n\n";
+    message += "Name: " + name + "\n";
+    message += "Phone: " + phone + "\n";
+    message += "Address: " + address + "\n\nItems:\n";
+
+    let total = 0;
+
+    cart.forEach(item => {
+        total += item.price * item.quantity;
+
+        message += `- ${item.name} x${item.quantity} = ₦${item.price * item.quantity}\n`;
+    });
+
+    message += "\nTOTAL: ₦" + total;
+
+    let url = "https://wa.me/2348109970402?text=" + encodeURIComponent(message);
+
+    window.open(url, "_blank");
+
+    localStorage.removeItem("cart");
+}
+    
+</script>
+    </body>
+    </html>

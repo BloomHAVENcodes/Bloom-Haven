@@ -685,7 +685,7 @@ header .fa-bars{
     display: flex;
     flex-wrap: wrap;
     gap: 2.5rem;
-    justify-content: center;
+    justify-content: space-between;
 }
 .products .box-container .box{
     max-width: 15rem;

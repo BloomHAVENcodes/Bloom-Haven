@@ -843,15 +843,211 @@ header .fa-bars{
 
 }
 
-@media (max-width:450px){
+@media (max-width:425px){
     html{
         font-size: 50%;
     }
     .heading{
         font-size: 3rem;
     }
-    
+    header .fa-bars{
+        display:block ;
+    }
+    header .navbar{
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: #eee;
+        border-top: .1 rem solid rgba(0,0,0,.1);
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); 
+    }
+    header #toggler:checked ~ .navbar{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+    header .navbar a{
+        margin: 1.5rem;
+        padding: 1.5rem;
+        background: #fff;
+        border: .1rem solid rgba(0,0,0,.1);
+        display: block;
+    }
+    .header .content h3{
+        font-size: 5rem;
+    }
+    .header .content span{
+        font-size: 2.5rem;
+    }
+    .icons-container .icons h3{
+    font-size: 2rem;
+    }
+   .icons-container .icons span{
+    font-size: 1.7rem;
+   }
+.contact .row .image img {
+   display: none;
 }
+   .products .box-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    justify-content: space-between;
+}
+.products .box-container .box{
+    max-width: 20rem;
+    max-height: 30rem;
+    box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+    border-radius: 1rem;
+    position: relative;
+}
+
+.products .box-container .box .discount {
+    position: absolute;
+    top: 1rem; left: 1rem;
+    padding: .7rem 1rem;
+    font-size: 2rem;
+    color: var(--pink);
+    background: rgba(255, 51,153, .05);
+    z-index: 1;
+    border-radius: .5rem;
+}
+.products .box-container .box .image{
+    padding-top: 2rem;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+}
+.products .box-container .box .image img{
+    margin-bottom: 2rem;
+    height: 100px;
+    width: 100px;
+    position: relative;
+    border-radius: 10px;
+}
+.products .box-container .box:hover .image img{
+    transform: scale(1.1);
+}
+.products .box-container .box .image .icons{
+    position: absolute;
+    bottom: 0rem; left: 0; right: 0;
+    display: flex;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    width: 100%;
+    background: var(--pink);
+    color: #fff;
+}
+.products .box-container .box:hover .image .icons{
+    bottom: 0;
+}
+
+.products .box-container .box .image .icons a{
+    display: inline-block;
+    background: none;
+    font-size: 1.5rem;
+    width: 100%;
+    color: #fff;
+}
+.products .box-container .box .image .icons .cart-btn{
+    margin-top: -0rem;
+    margin-left: 0rem;
+    width: 100%;
+    border: none;
+}
+.products .box-container .box .image .icons a:hover{
+    background: #333;
+}
+.products .box-container .box .content{
+    padding: 1rem;
+    text-align: center;
+}
+.products .box-container .box .content h3{
+    margin-top: -1rem;
+    font-size: 1.8rem;
+    color: #333;
+}
+.products .box-container .box .content .price{
+    font-size: 1.5rem;
+    color: var(--pink);
+    font-weight: bolder;
+    padding-top: 1rem;
+    margin-top: -1rem;
+}
+.products .box-container .box .content .price span{
+    font-size: 1rem;
+    color: #999;
+    font-weight: lighter;
+    text-decoration: line-through;
+}
+
+.details .detail-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+}
+.details .detail-container .each-detail-container{
+    flex: 1 1 30rem;
+    border-radius: .5rem;
+    padding: 3rem 2rem;
+    position: relative;
+}
+
+.order-details .cart-items h3 {
+  margin-bottom: 10px;
+  color: #555;
+}
+.order-details .cart-items .total{
+  font-weight: bold;
+  color: #000;
+}
+
+.customer-details{
+    width: 100%;
+    height: 40rem;
+    margin: -5rem auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,1);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 3rem;
+    padding-top: 3rem;
+    margin-bottom: 5rem;
+}
+.customer-details input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  margin-bottom: 7px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s;
+}
+.customer-details input:focus {
+   border-color: #333; 
+   box-shadow: 0 4px 15px rgba(0,0,0,.3);
+
+}
+.customer-details button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: #333;
+  color: white;
+  margin-left: 0rem;
+  margin-top: 3rem;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.customer-details button:hover {
+  background: none;
+  border: 1px solid #868383;
+}
+
+}
+
+
 @media (max-width: 600px) {
   .order-details {
     width: 95%;

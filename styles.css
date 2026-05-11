@@ -892,8 +892,8 @@ header .fa-bars{
     justify-content: space-between;
 }
 .products .box-container .box{
-    max-width: 20rem;
-    max-height: 30rem;
+    max-width: 15rem;
+    max-height: 25rem;
     box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
     border-radius: 1rem;
     position: relative;
